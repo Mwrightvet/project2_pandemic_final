@@ -4,7 +4,7 @@
 2. Make a dashboard page with multiple charts that update from the same data : Globe, Bar, Line  
 3. Use a JS library that we did not cover in class:  PlanetaryJS
 4. Ensure Visualizations are powered by  data sets with at least 100 records. : Multiple Pandemics & Centeroids for Plotting 195 Countries 
-5. User-driven interaction: dropdowns & Menu Bar
+5. User-driven interaction: dropdowns & Menu Bar to view about page / pandemic info / charts 
 6. Final visualization should ideally include at least three views. : Bar Chart, Bubble Chart and Globe 
 
 
@@ -33,7 +33,8 @@
  ![appjs](Images/appjavascript.png)
 6. We connected our HTML file to the routes from the Flask app.py 
  ![html](Images/html.png)
-7. We access the dashboard to see the Visualizations 
+7. We access the dashboard to see the Visualizations by running the python app.py file
+ ![server](Images/server.png)
 #### MENU BAR TO ACCESS BAR CHARTS  
 These Change as you select the drop down 
 ![swineflubar](Images/swineflubar.png)

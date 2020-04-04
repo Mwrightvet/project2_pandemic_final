@@ -37,13 +37,10 @@ def welcome():
 
     return render_template('index.html')
        ####### REPLACE BELOW WITH ACTUAL HTML FILE Somehow #### 
-        # f"Welcome to the Pandemic!<br/>"
-        # f"Available Routes:<br/>"
-        # f"/api/v1.0/pandemic"
-        # f"ADD DASHBOARD HERE"
+    
     
 ### MAKE NEW ROUTE FOR EACH HTML 
-### 
+ 
 @app.route("/charts")
 def charts():
 #######QUERY FROM DATABASE fOR THIS ROUTE ####### 
@@ -52,10 +49,7 @@ def charts():
 
     return render_template('charts.html')
        ####### REPLACE BELOW WITH ACTUAL HTML FILE Somehow #### 
-        # f"Welcome to the Pandemic!<br/>"
-        # f"Available Routes:<br/>"
-        # f"/api/v1.0/pandemic"
-        # f"ADD DASHBOARD HERE"
+  
 
 @app.route("/globe")
 def globe():
@@ -78,10 +72,7 @@ def about():
 
     return render_template('about.html')
        ####### REPLACE BELOW WITH ACTUAL HTML FILE Somehow #### 
-        # f"Welcome to the Pandemic!<br/>"
-        # f"Available Routes:<br/>"
-        # f"/api/v1.0/pandemic"
-        # f"ADD DASHBOARD HERE"
+ 
 
 @app.route("/api/v1.0/pandemic")
 def pandemic():

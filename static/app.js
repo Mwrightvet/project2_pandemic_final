@@ -50,7 +50,7 @@ console.log("this is Pandemics:")
 function optionChanged(id) {
     getPlot(id);
     getRightID(id);
-    getNewPlanet(pandemics);
+    getNewPlanet(id);
 }
 
 // create the function for the initial data rendering
@@ -75,7 +75,7 @@ function init() {
     });
 }
 console.log("Here is the planet")
-function getNewPlanet(pandemics){
+function getNewPlanet(id){
     var globe = planetaryjs.planet();
     console.log(globe)
     // Load our custom `autorotate` plugin; see below.
