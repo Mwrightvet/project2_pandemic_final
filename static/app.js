@@ -234,14 +234,14 @@ d3.json("/api/v1.0/pandemic", (data)=> {
         d3.sum(pandemics, d => d.Deaths)
 
         // Storing the total of each 
-        var totalcases =  d3.sum(pandemics, d => d.Cases);
-        var totaldeaths = d3.sum(pandemics, d => d.Deaths);
+        var totalcases =  d3.sum(pandemics, d => parseInt(d.Cases));
+        var totaldeaths = d3.sum(pandemics, d => parseInt(d.Deaths));
 
         console.log(pandemics);
 
         //Get top 10 of each
-        var sortedcases = pandemics.sort((a, b) => d3.descending(a.Cases, b.Cases)).slice(0, 10)
-        var sorteddeaths = pandemics.sort((a, b) => d3.descending(a.Deaths, b.Deaths)).slice(0, 10)
+        var sortedcases = pandemics.sort((a, b) => d3.descending(parseInt(a.Cases), parseInt(b.Cases))).slice(0, 10)
+        var sorteddeaths = pandemics.sort((a, b) => d3.descending(parseInt(a.Deaths), parseInt(b.Deaths))).slice(0, 10)
 
 
         //    var cases = sortedcases.metadata.map(d => d.Cases)
@@ -256,8 +256,8 @@ d3.json("/api/v1.0/pandemic", (data)=> {
 
         // make a function for data plotting (bar and bubble) for top 10
 
-        var Deaths_top = sorteddeaths.map(d => d.Deaths).reverse();
-        var Cases_top = sortedcases.map(c => c.Cases).reverse();
+        var Deaths_top = sorteddeaths.map(d =>  parseInt(d.Deaths)).reverse();
+        var Cases_top = sortedcases.map(c =>  parseInt(c.Cases)).reverse();
         // get the otu ids   
         // var Country_id = Deaths_top.map(d => "Country " + d)
         var Country_id = sorteddeaths.map(c => c.Country).reverse();
