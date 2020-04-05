@@ -1,40 +1,58 @@
-# project2_pandemic_final
+# Project 2:  Pandemics
+## By Melissa Wright and Molly Cox
+### [With additional technical support from tutors Mark Steadman, Samael Reyna, and Earnest Long Jr.]
 ## The Task
 1. Use a Python Flask–powered RESTful API, HTML/CSS, JavaScript, and one database:  SQLite. 
 2. Make a dashboard page with multiple charts that update from the same data : Globe, Bar, Line  
 3. Use a JS library that we did not cover in class:  PlanetaryJS
-4. Ensure Visualizations are powered by  data sets with at least 100 records. : Multiple Pandemics & Centeroids for Plotting 195 Countries 
+4. Ensure Visualizations are powered by  data sets with at least 100 records. : Multiple Pandemics & Centroids for plotting 195 Countries 
 5. User-driven interaction: dropdowns & Menu Bar to view about page / pandemic info / charts 
-6. Final visualization should ideally include at least three views. : Bar Chart, Bubble Chart and Globe 
+6. Final visualization should ideally include at least three views. : Globe, Bar Chart, and Line Chart
 
 
 ### Dataset
-1. spanishflu_data - https://ourworldindata.org/spanish-flu-largest-influenza-pandemic-in-history
-2. Swineflu_data - https://www.kaggle.com/de5d5fe61fcaa6ad7a66/pandemic-2009-h1n1-swine-flu-influenza-a-dataset
-3. Ebola - https://www.kaggle.com/imdevskp/ebola-outbreak-20142016-complete-dataset (we added possible, suspected to the confirmed deaths)
-4. Covid - https://www.kaggle.com/sudalairajkumar/novel-corona-virus-2019-dataset#covid_19_data.csv
+1. Covid19:   https://www.kaggle.com/sudalairajkumar/novel-corona-virus-2019-dataset#covid_19_data.csv
+2. Ebola 2014-16:  https://www.kaggle.com/imdevskp/ebola-outbreak-20142016-complete-dataset (we added possible, suspected to the confirmed deaths)
+3. Swineflu 2009:  https://en.wikipedia.org/wiki/2009_flu_pandemic_by_country
+4. Spanish Flu:  https://ourworldindata.org/spanish-flu-largest-influenza-pandemic-in-history  (for reference, not included in visualizations) 
 
 ### Dataset for Population & Plotting on Map 
 
 1. United Nations:  https://population.un.org/wpp/Download/Standard/Population/
-2. Centeroids Data - https://worldmap.harvard.edu/data/geonode:country_centroids_az8 
+2. Centroids Data - https://worldmap.harvard.edu/data/geonode:country_centroids_az8 
 
 ### ETL PROCESS 
 
-1. We used JupyterNotebook to clean the data and use the Case numbers, Deaths, Year, Country and Merge it with Centeroids for Plotting as well as Merging it will Global Population Data for Analysis of % Affected. We used a Jupyter Notebook for Each Pandemic and then had it generate a CSV file that was clean, then we imported, the now clean csv files into a new notebook called 
- ![etl](Images/etl.png)
-2. We imported dependancies needed to convert this into a sqlite database named pandemic_data.sqlite from jupyter notebook 
- ![sql](Images/sql.png)
-3. We made our flask app and renamed it to pandemic_final.db - we did this to make sure we knew which was was the final. 
- ![flask](Images/flask.png)
-4. We used pandas to jsonify and due to the commas, we had originally converted strings to numbers using pandemic-converter.js file but later used pandas to read it and knew to convert them numbers with commas into intergers. 
- ![query](Images/query.png)
-5. We routed our app.js file (JavaScript) to the Flask app.py 
- ![appjs](Images/appjavascript.png)
-6. We connected our HTML file to the routes from the Flask app.py 
- ![html](Images/html.png)
-7. We access the dashboard to see the Visualizations by running the python app.py file
- ![server](Images/server.png)
+We used Jupyter Notebook to accomplish the following:
+* Take the raw data and group by Country/Year. 
+* Merge the dataset with United Nations populations data so we could compare the magnitude of the epidemic relative to country population.
+* Merge this dataset with a dataset that contains a latitude and longitude for the center of each country so that we could plot the data on the globe.  
+* To merge the files by country, we made a lookup table that had the country names for each data set.  
+* Create a Jupyter Notebook for each Pandemic and then had it generate a clean CSV file. 
+* Import the now clean csv files into a new notebook, combine them, and store the data in a sqlite database.
+
+Jupyter Notebook Files:
+* lastdate_covid_19_scrubbing
+* ebola_scrub
+* swineflu_scrub_wikipedia
+* pop_scrub
+* combine_csvs
+
+Scrubbed .CSV Files:
+* merged_covid_19_data
+* swineflu_data
+* ebola_data
+
+* pop_data
+* clean_country_centroids_az8 (centroid data)
+* Country_lookup_table
+
+Database File:
+* pandemic_final.db (sqlite database)
+
+
+
+#### PANDEMIC WEBSITE - VISUALIZATIONS
 #### MENU BAR TO ACCESS BAR CHARTS  
 These Change as you select the drop down 
 ![swineflubar](Images/swineflubar.png)
@@ -48,4 +66,14 @@ These Change as you select the drop down
  ![swinefluglobe](Images/swinefluglobe.png)
  ![ebolaglobe](Images/ebolaglobe.png)
  ![covidglobe](Images/covidglobe.png)
- ![about](Images/about.png)
+
+ ```![about](Images/about.png)```
+
+ ### Challenges
+ * Accuracy and availability of data: there is a lack of comprehensive data for pandemics prior to 1960 
+ * Making the Flask/Database/Javascript connection:  Until we were able to do it ourselves, we didn't understand how to put all these pieces together.
+
+ ### If we had more time...
+ * Try to fix delay in epidemic data appearing on globe
+ * Add more pandemics to list of visualizations for comparison
+ * Clean up jupyter notebooks to be more efficient

@@ -11,15 +11,6 @@ import pandas as pd
 #################################################
 engine = create_engine("sqlite:///data/pandemic_final.db")
 
-# reflect an existing database into a new model
-# Base = automap_base()
-# # reflect the tables
-# Base.prepare(engine, reflect=True)
-
-# Save reference to the table
-# pandemic_table = Base.classes["pandemics"]
-
-
 #################################################
 # Flask Setup
 #################################################
@@ -32,46 +23,21 @@ app = Flask(__name__)
 @app.route("/")
 def welcome():
 #######QUERY FROM DATABASE fOR THIS ROUTE ####### 
-
-
-
     return render_template('index.html')
-       ####### REPLACE BELOW WITH ACTUAL HTML FILE Somehow #### 
-    
-    
-### MAKE NEW ROUTE FOR EACH HTML 
  
 @app.route("/charts")
 def charts():
-#######QUERY FROM DATABASE fOR THIS ROUTE ####### 
-
-
 
     return render_template('charts.html')
-       ####### REPLACE BELOW WITH ACTUAL HTML FILE Somehow #### 
-  
 
 @app.route("/globe")
 def globe():
-#######QUERY FROM DATABASE fOR THIS ROUTE ####### 
-
-
 
     return render_template('globe.html')
-       ####### REPLACE BELOW WITH ACTUAL HTML FILE Somehow #### 
-        # f"Welcome to the Pandemic!<br/>"
-        # f"Available Routes:<br/>"
-        # f"/api/v1.0/pandemic"
-        # f"ADD DASHBOARD HERE"
 
 @app.route("/about")
 def about():
-#######QUERY FROM DATABASE fOR THIS ROUTE ####### 
-
-
-
     return render_template('about.html')
-       ####### REPLACE BELOW WITH ACTUAL HTML FILE Somehow #### 
  
 
 @app.route("/api/v1.0/pandemic")
@@ -95,10 +61,8 @@ def pandemic():
         'names': pandemic_names,
         'pandemics':  all_pandemics
     }
- 
 
     return jsonify(pandemics_final)
-
 
 if __name__ == "__main__":
     app.run(debug=True)

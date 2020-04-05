@@ -1,23 +1,15 @@
 console.log("Welcome to our Pandemic Dashboard")
 
-
-
-// // instead of d3.json the data is stored in a variable that we named in the html page
-// console.log("Variable We made to Access the Data Goes Here ")
-
 // create the function to get the necessary data
 function getRightID(id) {
-    // read the json file to get data
-    // The data from the JSON file is arbitrarily named importedData as the argument
-
-
+    // Get the pandemic data from the Flask route in json format
     d3.json("/api/v1.0/pandemic", (data)=> {
         
         // get the metadata info for the demographic panel
    		// each of these is an array
        var pandemics = data.pandemics;
-console.log("this is Pandemics:")
-        console.log(pandemics)
+       console.log("this is Pandemics:")
+       console.log(pandemics)
 
         // filter meta data info by id
         var result = pandemics.filter(meta => meta.Pandemic === id);
@@ -124,10 +116,6 @@ function getNewPlanet(id){
     setInterval(function() {
       var lat = element["Lat"];
       var lng = element["Lon"];
-      // var lat = pandemics.Lat;
-      // var lng = pandemics.Lon;
-    // var lat = Math.random() * 170 - 85;
-    // var lng = Math.random() * 360 - 180;
       var color = colors[Math.floor(Math.random() * colors.length)];
      globe.plugins.pings.add(lng, lat, { color: color, ttl: 5000, angle: Math.random() * 10 });
     }, 100);
@@ -210,26 +198,11 @@ function getPlot(id) {
 
 d3.json("/api/v1.0/pandemic", (data)=> {
         console.log(data)
-  
-    // var pandemics = []
-    // switch (id) {
-    //     case "Ebola":
-    //         pandemics = data.pandemics.filter(s => s.Pandemic === id && s.Year === 2016) ; 
-    //         break;
-    //     default:
             pandemics = data.pandemics.filter(s => s.Pandemic === id);
-
-    //         break;
-    // }
-
-
         console.log(pandemics);
 
         // Storing the total of each 
-        
-
         //Add up the Cases and Deaths 
-
         d3.sum(pandemics, d => d.Cases)
         d3.sum(pandemics, d => d.Deaths)
 
@@ -243,18 +216,12 @@ d3.json("/api/v1.0/pandemic", (data)=> {
         var sortedcases = pandemics.sort((a, b) => d3.descending(parseInt(a.Cases), parseInt(b.Cases))).slice(0, 10)
         var sorteddeaths = pandemics.sort((a, b) => d3.descending(parseInt(a.Deaths), parseInt(b.Deaths))).slice(0, 10)
 
-
-        //    var cases = sortedcases.metadata.map(d => d.Cases)
-        //    console.log(`Total Cases: ${cases}`)
-
-
-
         // Create a horizontal bar chart with a dropdown menu to display the top 10 OTUs found in that individual.
         // Use sample_values as the values for the bar chart.
         // Use otu_ids as the labels for the bar chart.
         // Use otu_labels as the hovertext for the chart.
 
-        // make a function for data plotting (bar and bubble) for top 10
+        // make a function for data plotting (bar and line) for top 10
 
         var Deaths_top = sorteddeaths.map(d =>  parseInt(d.Deaths)).reverse();
         var Cases_top = sortedcases.map(c =>  parseInt(c.Cases)).reverse();
@@ -264,8 +231,7 @@ d3.json("/api/v1.0/pandemic", (data)=> {
         console.log(Country_id)
 
 
-        // get the otu labels for the top 10 OTUs found per individual.
-    
+        // get the country names for the top 10 cases found per pandemic.
         // create trace variable for the plot
         var trace = {
             x: Deaths_top,
@@ -323,13 +289,6 @@ d3.json("/api/v1.0/pandemic", (data)=> {
               colorscale: 'Portland',
               
               }
-        // //     marker: {
-        // //         size: samples.sample_values,
-        // //         color: samples.otu_ids,
-        // //         colorscale: 'Portland',
-        // //     },
-        // //     text: samples.otu_labels
-  
         }
   
         // // set the layout for the bubble plot
